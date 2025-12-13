@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="center">
+    <section class="card">
+      <h1>Dashboard</h1>
+      <div id="info"></div>
+      <div style="margin-top:1rem">
+        <button id="logout" class="primary">Sign out</button>
+      </div>
+    </section>
+  </main>
+  <script src="auth.js"></script>
+  <script>
+    if(!auth.requireAuth('index.html')) return;
+    const u = auth.getUser();
+    const info = document.getElementById('info');
+    info.innerHTML = `<p>Signed in as <strong>${u.name || u.email}</strong> (${u.email})</p>`;
+    document.getElementById('logout').addEventListener('click', ()=>auth.logout());
+  </script>
+</body>
+</html>
+
